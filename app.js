@@ -139,7 +139,7 @@ function openChat(question) {
   setStatus('opening', 'Opening Nola…');
   clearTimeout(openTimeout);
   if (question) window.Intercom('showNewMessage', question);
-  else window.Intercom('show');
+  else window.Intercom('showNewMessage');
   if (messengerOpen) setStatus('ready', 'Nola is open.');
   else openTimeout = setTimeout(() => {
     showChatError('The chat is taking longer than expected. Try again. If it still doesn’t open, check that Fin Messenger is enabled for this test website.');
