@@ -25,7 +25,7 @@ To change the demo password, compute a SHA-256 digest locally and replace `DEMO_
 ## What the demo does
 
 - Opens the **real Fin Messenger** using the provided visitor snippet.
-- Uses a custom red “Ask Nola” launcher and a light Messenger theme.
+- Uses a custom red “Ask Nola” launcher with the owner-supplied Nola robot image and a light Messenger theme. The launcher is site HTML/CSS; Fin's built-in launcher is hidden, so Fin's Launcher logo setting does not change this button.
 - Offers four questions that open the Messenger with a prefilled composer. The visitor still sends the question.
 - Shows a loading/error message if Messenger does not open. It does not fabricate chat replies.
 - Explains Click & Collect using the approved prototype content, sourced from https://www.noelleeming.co.nz/click-collect.
