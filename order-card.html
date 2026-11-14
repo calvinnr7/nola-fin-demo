@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e60012">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Nola · Order card preview</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./order-card.css?v=1">
+  <script type="module" src="./order-card.mjs?v=1"></script>
+</head>
+<body>
+  <svg class="definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="collection" viewBox="0 0 24 24"><path d="M4 12h16v9H4zM8 12V9m8 3V9M12 2v11m-4-4 4 4 4-4"/></symbol>
+    <symbol id="store" viewBox="0 0 16 16"><path d="M2 6h12l-1.5-4h-9L2 6Zm1 2v6h10V8M6 14V9h4v5M2 6v1a1.5 1.5 0 0 0 3 0 1.5 1.5 0 0 0 3 0 1.5 1.5 0 0 0 3 0 1.5 1.5 0 0 0 3 0V6"/></symbol>
+    <symbol id="chevron" viewBox="0 0 16 16"><path d="m3 6 5 5 5-5"/></symbol>
+  </defs></svg>
+
+  <section id="preview-gate" class="gate" aria-labelledby="gate-title">
+    <a href="./" class="wordmark">nola<span>.</span></a>
+    <div class="gate-panel">
+      <p class="eyebrow">A LITTLE PREVIEW</p>
+      <h1 id="gate-title">Come meet Nola.</h1>
+      <p>Enter your demo password to view the order card.</p>
+      <form id="preview-access">
+        <label for="preview-password">Demo password</label>
+        <input id="preview-password" type="password" autocomplete="current-password" required aria-describedby="preview-access-error">
+        <p id="preview-access-error" role="alert"></p>
+        <button class="primary-button" type="submit">Open the preview <span aria-hidden="true">↗</span></button>
+      </form>
+    </div>
+  </section>
+
+  <main id="order-preview" hidden>
+    <header class="preview-header"><a class="wordmark" href="./" aria-label="Nola FAQ demo">nola<span>.</span></a><a class="back-link" href="./">← FAQ demo</a></header>
+    <section class="preview-intro" aria-labelledby="preview-title">
+      <p class="eyebrow">NOLA · ORDER CARD PREVIEW</p>
+      <h1 id="preview-title">Your order, at a glance.</h1>
+      <p>Recreated from your Nola reference. Try the status filters below.</p>
+      <div class="sample-notice"><span class="sample-dot" aria-hidden="true"></span>Sample data · This preview is separate from Fin chat</div>
+      <fieldset class="sample-picker"><legend>Sample order size</legend><label><input type="radio" name="sample-size" value="5" checked> 5 items</label><label><input type="radio" name="sample-size" value="12"> 12 items · test “Show more”</label></fieldset>
+    </section>
+
+    <div class="card-stage">
+      <article class="order-card" aria-labelledby="order-title">
+        <header class="order-header">
+          <div class="order-heading"><span class="order-icon" aria-hidden="true"><svg><use href="#collection"/></svg></span><div><h2 id="order-title">Order NL05183456</h2><p id="order-quantity">5 items · 5 products</p></div><span class="status-badge progress order-status">In Progress</span></div>
+          <div id="status-distribution" class="status-distribution" role="img" aria-label="3 products in progress, 2 awaiting stock, 0 completed"><span id="progress-segment" class="progress-segment"></span><span id="awaiting-segment" class="awaiting-segment"></span></div>
+          <p id="completed-count" class="completed-count">0 of 5 products completed</p>
+        </header>
+        <div class="order-filters" role="group" aria-label="Filter order items by status">
+          <button type="button" class="filter-pill active" data-filter="all" aria-pressed="true"><span class="filter-count" id="count-all">5</span>All</button>
+          <button type="button" class="filter-pill" data-filter="awaiting" aria-pressed="false"><span class="filter-count awaiting" id="count-awaiting">2</span>Awaiting Stock</button>
+          <button type="button" class="filter-pill" data-filter="progress" aria-pressed="false"><span class="filter-count progress" id="count-progress">3</span>In Progress</button>
+        </div>
+        <ul id="order-items" class="order-items" aria-label="Order line items"></ul>
+        <footer id="order-pagination" class="order-pagination" hidden>
+          <button id="show-more" type="button" class="more-button"><span id="more-label">Show 5 more</span><svg aria-hidden="true"><use href="#chevron"/></svg></button>
+          <button id="show-all" type="button" class="show-all">Show all</button>
+        </footer>
+      </article>
+      <p id="filter-result" class="filter-result" role="status" aria-live="polite">Showing all 5 items</p>
+    </div>
+    <p class="preview-footnote">Fictional order · No Salesforce connection or live order lookup</p>
+  </main>
+  <noscript><p class="noscript">Enable JavaScript to open the interactive order preview.</p></noscript>
+</body>
+</html>

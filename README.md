@@ -46,3 +46,28 @@ The surrounding page and custom launcher use an illustrative Nola-inspired red p
 ## Checks
 
 Verify the password gate, incorrect-password message, session unlock/lock, question composer and responsive layout. A successful loader request does not prove Fin answered: send a real test question and inspect the conversation in Fin.
+
+## Order card preview
+
+Open `order-card.html` (also linked from the FAQ page). It uses the same demo password and tab session. This is a standalone UI preview using fictional records; it does not load the Fin SDK, send records to Fin, look up real orders or claim to be a Fin response.
+
+The default order contains five line items recreated from the supplied Nola screenshots: two Awaiting Stock and three In Progress. Count pills filter the rows while keeping the whole-order totals and status distribution unchanged. The optional 12-item sample demonstrates Show 5 more and Show all. With five items there is no unnecessary expansion control. The coloured bar represents the status distribution, not percentage completion; no sample products have completed.
+
+Run the dependency-free logic and launcher checks:
+
+```sh
+node --test tests/launcher.test.cjs tests/order-model.test.mjs
+```
+
+### Fin Messenger integration status
+
+This card has **not** been installed inside Fin Messenger. The Fin Agent Build plugin cannot read Developer Hub/installed apps/entitlements or install a Canvas Kit app. Its read-only inspection of workspace `kc1tslma` found no existing app step and could not confirm custom-app support for this Fin for Platforms demo. The user checked the Add step menu and reported Message, Collect data, Collect reply and Ask for CSAT, with no Send an app option exposed there. This does not establish a supported custom-card insertion route.
+
+General Intercom documentation supports [Canvas Kit Messenger apps](https://developers.intercom.com/docs/canvas-kit) in conversations and workflows. Native Canvas Kit cards use predefined components, so this exact HTML/CSS design cannot simply be pasted into a native card. A [Messenger Sheet](https://developers.intercom.com/docs/build-an-integration/getting-started/build-an-app-for-your-messenger/sheets-app) allows a custom iframe screen; that is the candidate route for this design if this workspace supports apps. A Sheet opens a separate screen within Messenger, rather than rendering this exact custom HTML inline in a chat bubble.
+
+Before integrating:
+
+1. Confirm Developer Hub can create/install a Messenger app and that the Fin workflow offers Send an app. General Intercom documentation alone does not establish this workspace's entitlement.
+2. Provide an HTTPS backend for Canvas Kit callbacks (Initialize, Submit, Sheet and Submit Sheet as used). GitHub Pages cannot accept those POST callbacks. Verify callback signatures with the app's client secret stored server-side; do not commit it or put it in the static site. The public Fin workspace ID is not that secret.
+3. Serve the reusable order-card UI from the Sheet backend with its own appropriate request verification. Remove preview-only navigation and sample-picker chrome for the embedded screen. Keep the fictional-data label until a real authenticated data connector is implemented.
+4. Test app delivery and Sheet interactions in the actual Fin workspace before publishing any workflow change. No workflow was modified as part of building this visual preview.
